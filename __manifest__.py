@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Task Followers',
+    'name': 'Display Followers who are customer',
     'version': '12.0.1.0.0',
     'Author': 'SAM VISITH',
     'website': '',
     'category': 'Project',
-    'summary': 'Allow users to follow a particular task and get notified',
+    'summary': 'Display those followers, on project_portal_template, who are not internal users.',
     'depends': ['project'],
     'description': """
 This module provides the following features:
-1. to show the followers who are the clients in the task page.
+1. to show the followers who are the customers in the task page.
 2. hide internal user in the follower list. 
 """,
     'data': [
