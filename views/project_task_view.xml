@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_so_no_print_lines" inherit_id="project.portal_my_task">
-        <xpath expr="//div[@class='coll-12 col-md-6 pb-2']" position="replace">	
-            <div class="coll-12 col-md-6 pb-2" t-if="task.partner_id">
+
+        <xpath expr="//div[@class='col-12 col-md-6 pb-2']" position="replace">
+            <div class="col-12 col-md-4 pb-2" t-if="task.user_id">
+                <strong>Assigned to</strong>
+                <div class="row">
+                    <div class="col flex-grow-0 pr-3">
+                        <img t-if="task.user_id.image" class="rounded-circle mt-1 o_portal_contact_img" t-att-src="image_data_uri(task.user_id.image)" alt="Contact"/>
+                        <img t-else="" class="rounded-circle mt-1 o_portal_contact_img" src="/web/static/src/img/user_menu_avatar.png" alt="Contact"/>
+                    </div>
+                    <div class="col pl-md-0">
+                        <div t-field="task.user_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@class='coll-12 col-md-6 pb-2']" position="replace">
+            <div class="coll-12 col-md-4 pb-2" t-if="task.partner_id">
                 <strong>Reported by</strong>
+                    <div class="row">
+                        <div class="col flex-grow-0 pr-3">
+                            <img t-if="task.partner_id.image" class="rounded-circle mt-1 o_portal_contact_img" t-att-src="image_data_uri(task.partner_id.image)" alt="Contact"/>
+                            <img t-else="" class="rounded-circle mt-1 o_portal_contact_img" src="/web/static/src/img/user_menu_avatar.png" alt="Contact"/>
+                        </div>
+                        <div class="col pl-md-0">
+                            <div t-field="task.partner_id" t-options='{"widget": "contact", "fields": ["name", "email", "phone"]}'/>
+                        </div>
+                    </div>
+            </div>
+            <div class="coll-12 col-md-4 pb-2" t-if="task.partner_id">
+                <strong>Followers</strong>
                 <tr t-foreach="task.message_follower_ids.filtered(lambda o: o.partner_id.customer==True)" t-as="follower">
                     <div class="row">
                         <div class="col flex-grow-0 pr-3">
@@ -18,5 +45,4 @@
             </div>
         </xpath> 
     </template>
-
 </odoo>
